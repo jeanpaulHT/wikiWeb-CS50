@@ -2,6 +2,8 @@ import re
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+import random
+
 
 
 def list_entries():
@@ -35,3 +37,29 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+
+def getSubString(entry):
+
+    entries = list_entries()
+    i = 0
+    result = []
+
+    for titles in entries:
+        i = 0        
+        for c in titles:
+            if(c == entry[i]): i = i +1
+            else: i = 0
+            if i == len(entry):
+                result.append(titles)
+                break
+        
+    return result
+
+
+def randomTitle():
+    entries = list_entries()
+    return entries[random.randint(0,len(entries)- 1)]
+
+    
+

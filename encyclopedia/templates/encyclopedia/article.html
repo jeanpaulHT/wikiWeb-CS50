@@ -11,14 +11,19 @@
 
 
 {% block body %}
+    <div style="text-align:right; padding-right: 1%;">
+        <form action="{% url 'wiki:edit' name%}">
+            <input class="save btn btn-info" type="submit" value="Edit"></input>
+        </form>
+        
+    </div>
     {% if article == none%}
         <center style="padding-top: 10%;"> 
             <h1 style="font-size: 400%;" >ERROR 404:</h1> <br>
             <h2>ARTICLE NOT FOUND</h2>
         </center>
     {% else %}
-        <h1>{{name}}</h1>
-        <div>{{article}}</div>
+        {{article|safe}}
     {% endif %}
 
 {% endblock %}
